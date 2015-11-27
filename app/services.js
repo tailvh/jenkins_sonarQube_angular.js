@@ -1,6 +1,8 @@
 /*jslint node: true */
 /*global angular, localStorage */
-"use strict";
+function strict() {
+  "use strict";  
+}
 
 angular.module("myApp.services", []).factory("songService", function() {
   var STORAGE_ID = 'myApp.songs', factory = { };

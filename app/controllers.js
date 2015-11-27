@@ -1,7 +1,9 @@
 /*jslint node: true */
 /*jslint nomen: true */
 /*global angular, _ */
-"use strict";
+function strict() {
+  "use strict";  
+}
 
 angular.module("myApp.controllers", []).controller("songCtrl", function($scope, songService) {
   
@@ -29,7 +31,7 @@ angular.module("myApp.controllers", []).controller("songCtrl", function($scope, 
     return _.isBlank(str);
   };
   
-  $scope.$watch('songs', function (/** Songs */ newValue, /** Songs */ oldValue) {
+  $scope.$watch('songs', function (/** Songs */ newValue ,/** Songs */ oldValue ) { // "oldValue" is unused
     if (newValue !== oldValue) {
       songService.put($scope.songs);
     }

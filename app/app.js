@@ -1,7 +1,9 @@
 /*jslint node: true */
 /*jslint nomen: true */
 /*global angular, _ */
-"use strict";
+function strict() {
+  "use strict";  
+}
 
 angular.module("myApp", [
   'myApp.filters',

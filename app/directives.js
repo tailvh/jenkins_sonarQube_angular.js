@@ -1,6 +1,8 @@
 /*jslint node: true */
 /*global angular */
-"use strict";
+function strict() {
+  "use strict";  
+}
 
 angular.module("myApp.directives", []).directive("rating", function() {
   var directive = { };
@@ -13,7 +15,7 @@ angular.module("myApp.directives", []).directive("rating", function() {
 
   directive.templateUrl = "app/templates/rating.html";
   
-  directive.link = function(scope, elements, attr) {
+  directive.link = function(scope, elements, attr) { // "elements", "atts" is unused
     
     scope.updateStars = function() {
       var idx = 0;
