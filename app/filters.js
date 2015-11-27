@@ -2,7 +2,7 @@
 /*jslint nomen: true */
 /*global angular, _ */
 function strict() {
-  "use strict";  
+  "use strict";
 }
 
 angular.module("myApp.filters", []).filter("titleize", function() {
