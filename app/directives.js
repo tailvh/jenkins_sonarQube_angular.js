@@ -1,7 +1,7 @@
 /*jslint node: true */
 /*global angular */
 function strict() {
-  "use strict";  
+  "use strict";
 }
 
 angular.module("myApp.directives", []).directive("rating", function() {
