@@ -4,7 +4,7 @@
 function strict() {
   "use strict";  
 }
-
+ 
 angular.module("myApp", [
   'myApp.filters',
   'myApp.services',
