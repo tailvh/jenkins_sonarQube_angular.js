@@ -20,38 +20,61 @@
       <div class="alert alert-info" ng-if="!songs.length">
         <strong>First!</strong> You're the first one using this app. Make sure to add some songs to the list!
       </div>
-
-      <form role="form" ng-submit="addSong(newSong.artist, newSong.title)">
+ 
+      <div ng-if="viewSong">
         <div class="row">
-          <div class="col-sm-5">
+          <div class="col-sm-8">
+            <youtube id="{{viewSong.id}}" width="640" height="360" current-time="time" controls="1"></youtube>
+          </div>
+          <div class="col-sm-4">
+            <div rating score="viewSong.score" max="5"></div>
+            <div style="padding-left: 15px;">
+              <strong>{{viewSong.title}}</strong>
+              <div>{{viewSong.artist}}</div>
+              <div>{{viewSong.id}}</div>            
+              <br/>
+              <button class="btn btn-default" ng-click="go()">Next Video</button>
+            </div>
+          </div>
+        </div>        
+      </div>
+
+    
+      <br/><br/>
+      <div class="clear"></div>
+      <form role="form" ng-submit="addSong(newSong.artist, newSong.title, newSong.id)">
+        <div class="row">
+          <div class="col-sm-4">
+            <label class="sr-only" for="song">Song</label>
+            <input type="text" class="form-control" name="song" placeholder="Enter the name of the song..." 
+              ng-model="newSong.title" />
+          </div>          
+          <div class="col-sm-3">
             <label class="sr-only" for="artist">Artist</label>
             <input type="text" class="form-control" name="artist" placeholder="Name of the artist, band, ..." 
               ng-model="newSong.artist" autofocus />
           </div>
-          <div class="col-sm-5">
-            <label class="sr-only" for="song">Song</label>
-            <input type="text" class="form-control" name="song" placeholder="Enter the name of the song..." 
-              ng-model="newSong.title" />
+          <div class="col-sm-3">
+            <label class="sr-only" for="songlink">Video ID</label>
+            <input type="text" class="form-control" name="id" placeholder="Enter the id of the song..."
+              ng-model="newSong.id" />
           </div>
           <div class="col-sm-2">
             <button type="submit" class="btn btn-default form-control"
-              ng-disabled="isEmpty(newSong.title) || isEmpty(newSong.artist)">Add</button>
+              ng-disabled="isEmpty(newSong.title) || isEmpty(newSong.artist) || isEmpty(newSong.id)">Add</button>
           </div>
         </div>
       </form>
-      <div class="clear"></div>
+      <div class="clear"></div><br/>
       <table class="table table-striped table-condensed">
-        <thead>
-          <tr>
-            <th>Song</th>
-          </tr>
+        <thead>      
         </thead>
         <tbody>
-          <tr ng-repeat="song in songs | orderBy:'-score'">
+          <tr ng-repeat="song in songs | orderBy:'-score' track by $index">
             <td>
               <div class="pull-left">
-                <strong>{{song.artist | titleize}}</strong><br />
-                <small>{{song.title | titleize}}</small>
+                <a ng-click="viewSongFunc(song)"><strong>{{song.title | titleize}}</strong></a><br />
+                <small>{{song.artist | titleize}}</small>
               </div>
               <div class="pull-right">
                 <div rating score="song.score" max="5" class="pull-left"></div>

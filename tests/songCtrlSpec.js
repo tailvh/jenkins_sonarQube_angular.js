@@ -4,13 +4,14 @@
 
 describe("Song rate controller", function() {
   
-  var scope, service;
+  var scope, service, player;
   
   beforeEach(function() {
     
     // Create mock service
     service = jasmine.createSpyObj('songService', [ 'get', 'put' ]);
-    
+    player  = jasmine.createSpyObj('youtubeEmbed', [ 'yt' ]);
+
     // Mock Angular module
     angular.mock.module('myApp.controllers');
     
@@ -27,7 +28,8 @@ describe("Song rate controller", function() {
       scope = $rootScope.$new();
       $controller('songCtrl', {
         $scope: scope,
-        songService: service
+        songService: service,
+        youtubeEmbed: player
       });
     });
   });
